@@ -45,6 +45,7 @@ const Dashboard = () => {
               <h3>Certifications</h3>
               <p className="card-stat">0</p>
               <p className="card-description">Earned</p>
+              <Link to="/certificates" className="card-link">View Certs →</Link>
             </div>
             <div className="overview-card">
               <div className="card-icon">👥</div>
@@ -68,21 +69,33 @@ const Dashboard = () => {
         <section className="dashboard-section">
           <h2>Quick Actions</h2>
           <div className="action-grid">
-            <button className="action-btn">
+            <button 
+              onClick={() => navigate('/courses')}
+              className="action-btn"
+            >
               <span className="btn-icon">📖</span>
               View Courses
             </button>
-            <button className="action-btn">
+            <button 
+              onClick={() => navigate('/blog')}
+              className="action-btn"
+            >
               <span className="btn-icon">📝</span>
               Read Blog
             </button>
-            <button className="action-btn">
+            <button 
+              onClick={() => navigate('/community')}
+              className="action-btn"
+            >
               <span className="btn-icon">💬</span>
               Community Chat
             </button>
-            <button className="action-btn">
-              <span className="btn-icon">📚</span>
-              Resources
+            <button 
+              onClick={() => navigate('/certificates')}
+              className="action-btn"
+            >
+              <span className="btn-icon">🏅</span>
+              My Certificates
             </button>
           </div>
         </section>

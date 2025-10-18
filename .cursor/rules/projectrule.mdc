@@ -1,0 +1,5 @@
+---
+project/
+  .cursor/rules/ 
+alwaysApply: true
+---

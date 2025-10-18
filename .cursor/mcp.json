@@ -1,0 +1,24 @@
+{
+  "mcpServers": {
+    "markdown-rules": {
+      "command": "npx",
+      "args": ["-y", "@valstro/markdown-rules-mcp@latest"],
+      "env": {
+        "PROJECT_ROOT": "C:\\Users\\Admin\\.cursor\\HR AI website",
+        "MARKDOWN_INCLUDE": "./HR-AI-Portal/**/*.md,./DocuGenius/**/*.md",
+        "MARKDOWN_EXCLUDE": "**/archive/**,**/node_modules/**",
+        "HOIST_CONTEXT": "true",
+        "INCLUDE_UNTRACKED": "true",
+        "DEBUG": "false"
+      }
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y", 
+        "@modelcontextprotocol/server-filesystem",
+        "C:\\Users\\Admin\\.cursor\\HR AI website"
+      ]
+    }
+  }
+}

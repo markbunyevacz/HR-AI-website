@@ -1,0 +1,22 @@
+.resources-page { min-height: 100vh; background: #f5f7fa; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+.resources-header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 60px 20px; text-align: center; }
+.resources-header h1 { font-size: 42px; margin: 0 0 10px 0; font-weight: 700; }
+.resources-header p { font-size: 18px; margin: 0; opacity: 0.95; }
+.resources-container { display: grid; grid-template-columns: 280px 1fr; gap: 30px; max-width: 1400px; margin: 0 auto; padding: 40px 20px; }
+.resources-filters { background: white; border-radius: 12px; padding: 25px; height: fit-content; position: sticky; top: 20px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); }
+.resources-filters h3 { font-size: 16px; color: #333; margin: 0 0 15px 0; font-weight: 600; }
+.filter-btn { width: 100%; padding: 12px 15px; background: white; color: #555; border: 2px solid #ddd; border-radius: 6px; font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.3s ease; text-align: left; margin-bottom: 8px; }
+.filter-btn:hover { border-color: #667eea; color: #667eea; }
+.filter-btn.active { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-color: transparent; }
+.resources-main { min-height: 400px; }
+.resources-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
+.resource-card { display: flex; flex-direction: column; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); transition: all 0.3s ease; text-decoration: none; color: inherit; }
+.resource-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); }
+.resource-icon { font-size: 48px; margin-bottom: 15px; }
+.resource-card h3 { font-size: 20px; color: #333; margin: 0 0 10px 0; font-weight: 700; }
+.resource-category { display: inline-block; background: #e8f4f8; color: #0c7ea4; padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; margin: 0 0 15px 0; width: fit-content; text-transform: uppercase; }
+.resource-description { color: #666; font-size: 14px; line-height: 1.6; margin: 0 0 15px 0; flex: 1; }
+.external-link { color: #667eea; font-weight: 600; font-size: 14px; transition: all 0.3s ease; }
+.resource-card:hover .external-link { transform: translateX(4px); }
+@media (max-width: 1024px) { .resources-container { grid-template-columns: 1fr; } .resources-filters { position: static; } }
+@media (max-width: 768px) { .resources-header h1 { font-size: 28px; } .resources-container { padding: 20px 15px; } .resources-filters { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; padding: 20px; } .filter-btn { margin-bottom: 0; } .resources-grid { grid-template-columns: 1fr; } }

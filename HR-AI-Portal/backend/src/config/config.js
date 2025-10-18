@@ -23,6 +23,13 @@ module.exports = {
         require: true,
         rejectUnauthorized: false
       }
-    }
+    },
+    pool: {
+      max: 10,        // Max 10 connections (optimized for 100 users)
+      min: 2,         // Keep 2 connections alive
+      acquire: 30000, // 30 seconds timeout
+      idle: 10000     // Close idle connections after 10 seconds
+    },
+    logging: false    // Disable SQL logging in production
   }
 };

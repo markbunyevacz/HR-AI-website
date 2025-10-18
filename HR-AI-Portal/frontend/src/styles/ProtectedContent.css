@@ -1,0 +1,233 @@
+.protected-content-wrapper {
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  pointer-events: auto;
+  -webkit-touch-callout: none;
+}
+
+.protected-content {
+  position: relative;
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  z-index: 1;
+}
+
+/* Watermark Overlay - Print Version */
+@media print {
+  .watermark-overlay {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 150%;
+    height: 150%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    opacity: 0.25;
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  .watermark-text {
+    font-size: 40px !important;
+    font-weight: bold !important;
+    color: rgba(0, 0, 0, 0.5) !important;
+  }
+
+  .protection-notice {
+    display: block !important;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #000 !important;
+    color: #fff !important;
+    padding: 15px 20px !important;
+    border-radius: 8px !important;
+    font-size: 12px !important;
+    z-index: 10000 !important;
+  }
+}
+
+/* Screen Watermark Overlay */
+.watermark-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 0;
+  display: none;
+}
+
+.watermark-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  font-size: 28px;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.08);
+  white-space: nowrap;
+  letter-spacing: 2px;
+}
+
+/* Protection Notice */
+.protection-notice {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 15px;
+  padding: 12px 15px;
+  background: #f0f8ff;
+  border: 1px solid #667eea;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #0c7ea4;
+}
+
+.lock-icon {
+  font-size: 16px;
+}
+
+.notice-text {
+  font-weight: 500;
+}
+
+/* Disable Text Selection */
+.protected-content {
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  -webkit-touch-callout: none !important;
+}
+
+/* Disable Drag and Drop */
+.protected-content {
+  -webkit-user-drag: none !important;
+}
+
+.protected-content img,
+.protected-content figure,
+.protected-content video {
+  -webkit-user-drag: none !important;
+  user-drag: none !important;
+  pointer-events: none !important;
+}
+
+/* Prevent Copy on Text Selection */
+.protected-content::selection {
+  background: transparent;
+  color: inherit;
+}
+
+.protected-content *::selection {
+  background: transparent;
+  color: inherit;
+}
+
+.protected-content::-moz-selection {
+  background: transparent;
+  color: inherit;
+}
+
+.protected-content *::-moz-selection {
+  background: transparent;
+  color: inherit;
+}
+
+/* Cursor Adjustments */
+.protected-content {
+  cursor: default !important;
+}
+
+.protected-content a {
+  cursor: pointer !important;
+}
+
+/* Print Styles */
+@media print {
+  body::before {
+    content: 'This document is protected and should not be redistributed';
+    position: fixed;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 48px;
+    font-weight: bold;
+    opacity: 0.1;
+    transform: rotate(-45deg);
+    z-index: 9999;
+  }
+
+  .protection-notice {
+    position: absolute;
+    bottom: 10mm;
+    right: 10mm;
+    background: #333 !important;
+    color: #fff !important;
+    padding: 5mm !important;
+    font-size: 10px !important;
+    border: 1px solid #666 !important;
+  }
+}
+
+/* Accessibility - Ensure content is still readable */
+.protected-content:focus {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+}
+
+/* Hover Effects - Visual Feedback */
+.protected-content:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .protected-content {
+    padding: 20px;
+  }
+
+  .watermark-text {
+    font-size: 20px;
+  }
+
+  .protection-notice {
+    font-size: 12px;
+    padding: 10px 12px;
+  }
+}
+
+/* Right-click Context Menu - Hidden */
+.protected-content {
+  -webkit-user-select: none !important;
+}
+
+/* Image Protection */
+.protected-content img {
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  -webkit-user-drag: none !important;
+  pointer-events: none !important;
+}
+
+/* Code Block Protection */
+.protected-content code,
+.protected-content pre {
+  user-select: none !important;
+  -webkit-user-select: none !important;
+}
+
+/* Table Protection */
+.protected-content table,
+.protected-content td,
+.protected-content th {
+  user-select: none !important;
+  -webkit-user-select: none !important;
+}
