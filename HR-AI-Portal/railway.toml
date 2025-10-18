@@ -1,7 +1,0 @@
-[build]
-builder = "nixpacks"
-buildCommand = "nom install && nom install --workspace=backend && npm run build -workspace=frontend"
-
-[deploy]
-startCommand = "cd backend && npm start"
-restartPolicyMaxRetries = 5
