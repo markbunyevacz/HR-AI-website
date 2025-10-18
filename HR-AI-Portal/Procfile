@@ -1,0 +1,2 @@
+﻿release: cd backend && npm run migrate:prod || true
+web: cd backend && npm start
