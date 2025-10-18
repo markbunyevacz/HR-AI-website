@@ -1,0 +1,26 @@
+{
+  "name": "hr-ai-portal",
+  "version": "1.0.0",
+  "description": "HR AI Certification Portal - CAHIS Training Platform",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "install-all": "npm install && npm install --workspace=frontend && npm install --workspace=backend",
+    "dev": "npm run dev --workspace=frontend & npm run dev --workspace=backend",
+    "build": "npm run build --workspace=frontend && npm run build --workspace=backend",
+    "test": "npm test --workspace=frontend && npm test --workspace=backend",
+    "lint": "npm run lint --workspace=frontend && npm run lint --workspace=backend"
+  },
+  "keywords": [
+    "HR",
+    "AI",
+    "CAHIS",
+    "Certification",
+    "Learning"
+  ],
+  "author": "HR AI Team",
+  "license": "MIT"
+}

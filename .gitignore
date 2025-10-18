@@ -1,0 +1,69 @@
+# Dependencies
+node_modules/
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# IDE & Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Frontend
+frontend/dist/
+frontend/.cache/
+
+# Backend
+backend/node_modules/
+
+# VS Code extensions (should not be in repo)
+../extensions/
+../ide_state.json
+
+# Other directories that shouldn't be committed
+../HR_AI-ARCH/
+../Licencing/
+../MC/
+../PMTOOLS/
+../Westend Hackathon/
