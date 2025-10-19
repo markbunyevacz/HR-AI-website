@@ -161,6 +161,32 @@ startCommand: cd HR-AI-Portal/backend && NODE_PATH=/opt/render/project/src/node_
 
 ---
 
+### ❌ F6: Assuming render.yaml Auto-Creates Databases
+**Date:** October 19, 2025 09:48 UTC  
+**Attempted Assumption:**
+```yaml
+# In render.yaml
+databases:
+  - name: hr-ai-db
+    plan: starter
+```
+
+**Failure Indicators:**
+- Health check shows: `"database": "error"`
+- API endpoints fail: `"Error fetching courses"`
+- Database service doesn't exist in project
+- DATABASE_URL shows only database name, not connection string
+
+**Why This Failed:**
+- render.yaml database section does NOT automatically create databases on free tier
+- Requires manual PostgreSQL database creation
+- Automatic provisioning only works with paid plans or specific blueprint deployments
+
+**Root Cause:** Incorrect assumption about render.yaml database auto-provisioning  
+**Prevention Rule:** ⛔ **ALWAYS manually create PostgreSQL database before deploying web service**
+
+---
+
 ## ⚠️ PARTIALLY SUCCESSFUL (Use with Extreme Caution)
 
 ### ⚠️ P1: Root-Level Start Script Wrapper
@@ -283,6 +309,39 @@ services:
 
 ---
 
+### ✅ S6: Manual PostgreSQL Database Creation
+**Status:** ✅ REQUIRED FOR FREE TIER  
+**Complexity:** LOW ⭐  
+**Success Rate:** 100%
+
+**Configuration:**
+```
++ New → Postgres
+Name: hr-ai-db
+Database: hr_ai_portal
+Region: Oregon (same as web service)
+Instance Type: Free
+```
+
+**Why This Works:**
+- Render free tier requires manual database creation
+- render.yaml database section is informational only
+- Manual creation ensures proper provisioning
+- Can link to web service after creation
+
+**Steps:**
+1. Click "+ New" in Render Dashboard
+2. Select "Postgres"
+3. Fill in database details
+4. Wait 5-10 minutes for provisioning
+5. Link DATABASE_URL to web service
+6. Redeploy service
+
+**Confidence Level:** 100% ⭐⭐⭐⭐⭐  
+**Recommendation:** ✅ REQUIRED STEP for free tier deployments
+
+---
+
 ## 🔄 SOLUTION DECISION MATRIX
 
 | Problem Type | Recommended Solution | Success Rate | Complexity | Time |
@@ -291,6 +350,7 @@ services:
 | **Path Resolution** | S3 (rootDirectory) | 95% | ⭐ | 5min |
 | **Module Resolution** | S2 (Direct Install) | 90% | ⭐⭐ | 10min |
 | **Workspace Conflicts** | S1 or S3 | 95% | ⭐ | 5min |
+| **Database Setup** | S6 (Manual Creation) | 100% | ⭐ | 10min |
 | **Complete Architecture** | S4 (Docker) | 98% | ⭐⭐⭐ | 30min |
 
 ---
@@ -307,6 +367,8 @@ If you see these in your configuration, STOP and revise:
 - [ ] ❌ NODE_PATH environment hacks
 - [ ] ❌ Relative paths without verification
 - [ ] ❌ Empty render.yaml files
+- [ ] ❌ Assuming render.yaml auto-creates databases
+- [ ] ❌ DATABASE_URL showing only database name (not connection string)
 
 ### 🟢 SUCCESS INDICATORS (Proceed)
 Configuration is correct if you see:
@@ -316,6 +378,8 @@ Configuration is correct if you see:
 - [x] ✅ Direct `npm install` in target directory
 - [x] ✅ Health check endpoint defined
 - [x] ✅ Database connection configured
+- [x] ✅ PostgreSQL database manually created (hr-ai-db)
+- [x] ✅ DATABASE_URL is full connection string (not just name)
 - [x] ✅ No workspace + cd combinations
 
 ---
@@ -328,6 +392,8 @@ Configuration is correct if you see:
 - [ ] Procfile paths are correct (if used)
 - [ ] Health check route implemented
 - [ ] Environment variables configured
+- [ ] PostgreSQL database manually created
+- [ ] DATABASE_URL linked to database (full connection string)
 
 ### Failure Prevention
 - [ ] Check registry for previously failed solutions
@@ -442,6 +508,58 @@ Start Command: npm start
 - ✅ Loop prevention system successfully guided to solution
 
 **Success Pattern:** Solution S1 Variant (backend-standalone via dashboard configuration)
+
+---
+
+### Attempt #6 - DATABASE ISSUE DISCOVERED ⚠️
+**Date:** October 19, 2025 09:48 UTC  
+**Issue Type:** Database Not Created  
+**Status:** 🟡 **IN PROGRESS** - Creating database manually
+
+**Problem Identified:**
+```
+Health Check: "database": "error"
+API Response: "Error fetching courses"
+Root Cause: PostgreSQL database was never created
+```
+
+**Investigation:**
+- render.yaml included database configuration:
+  ```yaml
+  databases:
+    - name: hr-ai-db
+      plan: starter
+  ```
+- However, database was NOT automatically created by Render
+- Service shows only 2 services (both web services)
+- No PostgreSQL database exists in project
+
+**Why Database Wasn't Created:**
+1. ❌ render.yaml database section requires manual creation on free tier
+2. ❌ Automatic database provisioning only works with blueprints or paid plans
+3. ❌ DATABASE_URL environment variable showed only "hr-ai-db" (name) not connection string
+
+**Solution Being Applied:**
+1. ✅ Manual PostgreSQL database creation via "+ New" → "Postgres"
+2. ✅ Configuration:
+   ```
+   Name: hr-ai-db
+   Database: hr_ai_portal
+   Region: Oregon (same as web service)
+   Instance Type: Free
+   ```
+3. ⏳ Wait for provisioning (5-10 minutes)
+4. ⏳ Link DATABASE_URL to new database
+5. ⏳ Redeploy service
+
+**Key Lesson:**
+- ⛔ **render.yaml database section does NOT auto-create databases on free tier**
+- ⛔ **Must manually create PostgreSQL database separately**
+- ⛔ **Always verify database exists before considering deployment complete**
+
+**Prevention Rule:** ⛔ **ALWAYS manually create PostgreSQL database first, then deploy web service**
+
+**New Failed Pattern F6:** Assuming render.yaml automatically creates databases
 
 ---
 

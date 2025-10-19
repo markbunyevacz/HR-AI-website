@@ -14,6 +14,8 @@ rootDirectory: backend                    # ❌ Path doesn't exist
 cd backend                               # ❌ Wrong path
 npm install --workspace=X + cd commands  # ❌ Symlink issues
 Manual Render dashboard settings         # ❌ Causes conflicts
+Assuming render.yaml creates database    # ❌ Must create manually
+DATABASE_URL = "hr-ai-db"                # ❌ Must be full connection string
 ```
 
 ### ✅ ALWAYS DO THIS (Proven to Work)
@@ -23,6 +25,8 @@ rootDirectory: backend-standalone         # ✅ Exists and works
 rootDirectory: HR-AI-Portal/backend      # ✅ Exists and works
 cd HR-AI-Portal/backend && npm install   # ✅ Direct installation
 Declarative YAML configuration           # ✅ Trackable and reliable
++ New → Postgres (manual database)       # ✅ REQUIRED for free tier
+Link DATABASE_URL to database            # ✅ Full connection string
 ```
 
 ---
@@ -61,11 +65,16 @@ services:
 
 ## 🚨 PRE-DEPLOYMENT CHECKLIST
 
-### Before Deploy (2 minutes)
+### Before Deploy (15 minutes)
 - [x] ✅ `/render.yaml` uses `backend-standalone`
 - [x] ✅ `backend-standalone/` directory exists
+- [ ] ⏳ **PostgreSQL database created manually** (+ New → Postgres)
+  - Name: hr-ai-db
+  - Database: hr_ai_portal
+  - Region: Oregon
+  - Wait 5-10 min for "Available" status
 - [ ] ⏳ Environment variables configured in Render
-- [ ] ⏳ Database created in Render
+- [ ] ⏳ DATABASE_URL linked to hr-ai-db (full connection string)
 - [ ] ⏳ Remove `/HR-AI-Portal/render.yaml` (optional cleanup)
 
 ### During Deploy (Watch Logs)
@@ -98,6 +107,11 @@ services:
 **Cause:** Non-existent directory path  
 **Fix:** Verify directory exists in repository  
 **Status:** ✅ VERIFIED
+
+### Issue: "database": "error" in health check
+**Cause:** PostgreSQL database not created  
+**Fix:** Manually create database via + New → Postgres  
+**Status:** ⚠️ **CRITICAL** - Must create database before deployment works
 
 ---
 
