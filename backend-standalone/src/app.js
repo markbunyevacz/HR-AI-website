@@ -16,6 +16,9 @@ const healthRoutes = require('./routes/health');
 
 const app = express();
 
+// Trust proxy - required for Render.com and other reverse proxies
+app.set('trust proxy', true);
+
 // Compression Middleware (70-80% size reduction)
 app.use(compressionMiddleware);
 
