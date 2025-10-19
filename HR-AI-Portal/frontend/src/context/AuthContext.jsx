@@ -3,6 +3,9 @@ import axios from 'axios';
 
 const AuthContext = createContext();
 
+// Get API URL from environment variable, fallback to localhost for development
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
@@ -22,7 +25,7 @@ export const AuthProvider = ({ children }) => {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await axios.post('http://localhost:3001/api/auth/register', {
+      const response = await axios.post(`${API_URL}/api/auth/register`, {
         firstName,
         lastName,
         email,
@@ -50,7 +53,7 @@ export const AuthProvider = ({ children }) => {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await axios.post('http://localhost:3001/api/auth/login', {
+      const response = await axios.post(`${API_URL}/api/auth/login`, {
         email,
         password,
       });
