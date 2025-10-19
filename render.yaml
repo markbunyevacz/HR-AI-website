@@ -1,9 +1,11 @@
 services:
   - type: web
     name: hr-ai-backend
-    env: docker
+    env: node
     plan: starter
-    dockerfilePath: ./Dockerfile
+    rootDirectory: backend-standalone
+    buildCommand: npm install
+    startCommand: npm start
     healthCheckPath: /health
     envVars:
       - key: NODE_ENV
