@@ -1,11 +1,13 @@
 services:
   - type: web
-    name: hr-ai-portal
+    name: hr-ai-backend
     env: node
+    # This is the crucial setting for monorepos
     rootDirectory: HR-AI-Portal/backend
     plan: starter
     buildCommand: npm install
-    startCommand: npm run start:prod
+    startCommand: npm start
+    healthCheckPath: /health
     envVars:
       - key: NODE_ENV
         value: production
@@ -13,7 +15,6 @@ services:
         fromDatabase:
           name: hr-ai-db
           property: connectionString
-    healthCheckPath: /health
 
 databases:
   - name: hr-ai-db
