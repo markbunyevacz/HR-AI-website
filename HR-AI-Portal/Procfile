@@ -1,2 +1,2 @@
-﻿release: cd backend && npm run migrate:prod || true
+﻿release: npm install && npm install --workspace=backend && cd backend && npm run migrate:prod || true
 web: cd backend && npm start
