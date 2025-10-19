@@ -1,7 +1,0 @@
-[build]
-builder = "nixpacks"
-buildCommand = "npm install && npm install --workspace=HR-AI-Portal/backend && npm run build --workspace=HR-AI-Portal/frontend"
-
-[deploy]
-startCommand = "cd HR-AI-Portal/backend && npm start"
-restartPolicyMaxRetries = 5
