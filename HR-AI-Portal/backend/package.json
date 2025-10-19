@@ -5,7 +5,6 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
-    "start:prod": "node start-production.js",
     "build": "echo 'Backend build completed'",
     "dev": "nodemon src/index.js",
     "test": "jest",
