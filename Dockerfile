@@ -1,23 +1,20 @@
-# Use an official Node.js runtime as a parent image
-FROM node:18-slim
+FROM node:18-alpine
 
-# Set the working directory in the container
 WORKDIR /app
 
-# Copy the package.json and package-lock.json files from the root and the backend
-COPY package.json ./
-COPY HR-AI-Portal/package.json ./HR-AI-Portal/
-COPY HR-AI-Portal/backend/package.json ./HR-AI-Portal/backend/
+# Copy package files
+COPY HR-AI-Portal/package.json ./
+COPY HR-AI-Portal/backend/package.json ./backend/
 
-# By copying all package files, we can leverage Docker's layer caching
-# This command will install dependencies for the entire workspace
-RUN npm install
+# Install dependencies locally in backend
+WORKDIR /app/backend
+RUN npm install --no-workspaces
 
-# Copy the rest of your application's code
-COPY . .
+# Copy backend source
+COPY HR-AI-Portal/backend/ ./
 
-# Set the working directory to the backend service
-WORKDIR /app/HR-AI-Portal/backend
+# Expose port
+EXPOSE 10000
 
-# The command to run your application
+# Start the application
 CMD ["npm", "start"]

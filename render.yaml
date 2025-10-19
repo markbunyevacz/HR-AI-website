@@ -1,12 +1,9 @@
 services:
   - type: web
     name: hr-ai-backend
-    env: node
-    # This is the crucial setting for monorepos
-    rootDirectory: HR-AI-Portal/backend
+    env: docker
     plan: starter
-    buildCommand: npm install
-    startCommand: npm start
+    dockerfilePath: ./Dockerfile
     healthCheckPath: /health
     envVars:
       - key: NODE_ENV
