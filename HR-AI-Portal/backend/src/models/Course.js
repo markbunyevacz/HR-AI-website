@@ -85,10 +85,11 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'courseId',
       onDelete: 'CASCADE',
     });
-    Course.hasMany(models.Review, {
-      foreignKey: 'courseId',
-      onDelete: 'CASCADE',
-    });
+    // Review model not yet implemented
+    // Course.hasMany(models.Review, {
+    //   foreignKey: 'courseId',
+    //   onDelete: 'CASCADE',
+    // });
   };
 
   return Course;

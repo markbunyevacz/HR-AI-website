@@ -72,10 +72,11 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'authorId',
       as: 'author',
     });
-    BlogPost.hasMany(models.BlogComment, {
-      foreignKey: 'postId',
-      onDelete: 'CASCADE',
-    });
+    // BlogComment model not yet implemented
+    // BlogPost.hasMany(models.BlogComment, {
+    //   foreignKey: 'postId',
+    //   onDelete: 'CASCADE',
+    // });
   };
 
   return BlogPost;
