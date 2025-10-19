@@ -2,9 +2,10 @@ services:
   - type: web
     name: hr-ai-portal
     env: node
+    rootDirectory: HR-AI-Portal/backend
     plan: starter
-    buildCommand: npm install && npm install --workspace=HR-AI-Portal/backend && npm run build --workspace=HR-AI-Portal/frontend
-    startCommand: cd HR-AI-Portal/backend && npm start
+    buildCommand: npm install
+    startCommand: npm start
     envVars:
       - key: NODE_ENV
         value: production
