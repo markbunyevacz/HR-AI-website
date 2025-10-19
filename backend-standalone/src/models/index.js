@@ -8,15 +8,23 @@ const config = require('../config/config.js');
 const env = process.env.NODE_ENV || 'development';
 const dbConfig = config[env];
 
-const sequelize = new Sequelize(
-  dbConfig.database,
-  dbConfig.username,
-  dbConfig.password,
-  {
-    host: dbConfig.host,
-    dialect: dbConfig.dialect,
-  }
-);
+// Initialize Sequelize based on environment
+let sequelize;
+if (dbConfig.use_env_variable) {
+  // Production: Use DATABASE_URL environment variable
+  sequelize = new Sequelize(process.env[dbConfig.use_env_variable], dbConfig);
+} else {
+  // Development/Test: Use individual connection parameters
+  sequelize = new Sequelize(
+    dbConfig.database,
+    dbConfig.username,
+    dbConfig.password,
+    {
+      host: dbConfig.host,
+      dialect: dbConfig.dialect,
+    }
+  );
+}
 
 const db = {};
 
