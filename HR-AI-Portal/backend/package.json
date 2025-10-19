@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "start": "node src/index.js",
+    "start": "npm install && node src/index.js",
     "build": "echo 'Backend build completed'",
     "dev": "nodemon src/index.js",
     "test": "jest",
