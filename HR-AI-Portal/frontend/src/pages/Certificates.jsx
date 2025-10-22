@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
+import WatermarkOverlay from '../components/WatermarkOverlay';
 import '../styles/Certificates.css';
 
 const Certificates = () => {
@@ -51,6 +52,7 @@ const Certificates = () => {
 
   return (
     <div className="certificates-page">
+      <WatermarkOverlay />
       <header className="certificates-header">
         <div className="header-content">
           <h1>🏆 My Certificates</h1>

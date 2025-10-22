@@ -1,4 +1,5 @@
 import React from 'react';
+import WatermarkOverlay from '../components/WatermarkOverlay';
 import '../styles/Resources.css';
 
 const Resources = () => {
@@ -8,7 +9,7 @@ const Resources = () => {
     { id: 3, title: 'HR.com', category: 'Community', link: 'https://hr.com', icon: '👥', description: 'HR networking and knowledge sharing' },
     { id: 4, title: 'Coursera HR Programs', category: 'Certifications', link: 'https://coursera.org', icon: '🎓', description: 'University-backed HR certifications' },
     { id: 5, title: 'Udemy HR Courses', category: 'Online Courses', link: 'https://udemy.com', icon: '💻', description: 'Affordable HR skill development' },
-    { id: 6, title: 'Human Resource Executive', category: 'Publications', link: '#', icon: '📰', description: 'Industry news and insights' },
+    { id: 6, title: 'Human Resource Executive', category: 'Publications', link: 'https://hrexecutive.com', icon: '📰', description: 'Industry news and insights' },
   ];
 
   const categories = ['All', 'Online Courses', 'Professional Org', 'Certifications', 'Community', 'Publications'];
@@ -20,6 +21,7 @@ const Resources = () => {
 
   return (
     <div className="resources-page">
+      <WatermarkOverlay />
       <header className="resources-header">
         <h1>📚 Learning Resources</h1>
         <p>Curated external materials to support your professional development</p>

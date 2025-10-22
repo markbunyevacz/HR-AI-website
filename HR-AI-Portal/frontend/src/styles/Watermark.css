@@ -1,0 +1,100 @@
+.watermark-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  overflow: hidden;
+  user-select: none;
+}
+
+.watermark-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  font-size: 18px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.08);
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-family: 'Courier New', monospace;
+  opacity: 0.5;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+.watermark-offset {
+  top: 25%;
+  left: 25%;
+}
+
+.watermark-offset-2 {
+  top: 75%;
+  left: 75%;
+}
+
+/* Create a tiled watermark pattern */
+.watermark-overlay::before,
+.watermark-overlay::after {
+  content: attr(data-watermark);
+  position: absolute;
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.06);
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-family: 'Courier New', monospace;
+  transform: rotate(-45deg);
+  pointer-events: none;
+  user-select: none;
+}
+
+.watermark-overlay::before {
+  top: 15%;
+  right: 20%;
+}
+
+.watermark-overlay::after {
+  bottom: 15%;
+  left: 20%;
+}
+
+/* Ensure watermark is visible in screenshots but not too intrusive */
+@media print {
+  .watermark-overlay {
+    display: block !important;
+  }
+  
+  .watermark-content {
+    color: rgba(0, 0, 0, 0.15) !important;
+    opacity: 0.8 !important;
+  }
+}
+
+/* Make watermark slightly more visible on dark backgrounds */
+@media (prefers-color-scheme: dark) {
+  .watermark-content {
+    color: rgba(255, 255, 255, 0.12);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* Responsive sizing */
+@media (max-width: 768px) {
+  .watermark-content {
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
+}
+
+@media (max-width: 480px) {
+  .watermark-content {
+    font-size: 10px;
+    letter-spacing: 0.5px;
+  }
+}
+

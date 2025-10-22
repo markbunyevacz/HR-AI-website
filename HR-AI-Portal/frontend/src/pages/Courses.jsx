@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
+import WatermarkOverlay from '../components/WatermarkOverlay';
 import '../styles/Courses.css';
 
 const Courses = () => {
@@ -67,6 +68,7 @@ const Courses = () => {
 
   return (
     <div className="courses-page">
+      <WatermarkOverlay />
       <header className="courses-header">
         <h1>CAHIS™ Courses</h1>
         <p>Advance your HR AI skills with our certification programs</p>

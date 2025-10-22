@@ -1,13 +1,13 @@
 .landing-page { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow-x: hidden; }
-.hero { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; padding: 100px 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; max-width: 1400px; margin: 0 auto; }
+.hero { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; padding: 100px 40px; background: linear-gradient(135deg, #4a5fc1 0%, #5a3d7f 100%); color: white; max-width: 1400px; margin: 0 auto; }
 .hero-content h1 { font-size: 48px; font-weight: 700; margin: 0 0 20px 0; line-height: 1.2; }
 .hero-subtitle { font-size: 20px; margin: 0 0 30px 0; opacity: 0.95; line-height: 1.6; }
 .hero-buttons { display: flex; gap: 15px; }
 .btn-primary, .btn-secondary { padding: 15px 35px; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; }
-.btn-primary { background: white; color: #667eea; }
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2); }
+.btn-primary { background: white; color: #4a5fc1; }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3); }
 .btn-secondary { background: transparent; color: white; border: 2px solid white; }
-.btn-secondary:hover { background: white; color: #667eea; }
+.btn-secondary:hover { background: white; color: #4a5fc1; }
 .hero-graphic { display: flex; gap: 20px; justify-content: center; align-items: center; }
 .graphic-element { font-size: 80px; animation: float 3s ease-in-out infinite; }
 .graphic-element:nth-child(2) { animation-delay: 0.2s; }
@@ -25,24 +25,24 @@
 .feature-card p { color: #666; font-size: 16px; line-height: 1.6; margin: 0; }
 .how-it-works { padding: 100px 40px; background: white; }
 .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
-.step { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 40px; border-radius: 12px; text-align: center; position: relative; }
+.step { background: linear-gradient(135deg, #4a5fc1 0%, #5a3d7f 100%); color: white; padding: 40px; border-radius: 12px; text-align: center; position: relative; }
 .step-number { font-size: 48px; font-weight: 700; margin-bottom: 15px; }
 .step h3 { font-size: 24px; margin: 0 0 15px 0; font-weight: 700; }
 .step p { font-size: 16px; line-height: 1.6; margin: 0; opacity: 0.95; }
 .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; padding: 80px 40px; background: #f5f7fa; max-width: 1200px; margin: 0 auto; }
 .stat-card { background: white; padding: 40px; border-radius: 12px; text-align: center; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); }
-.stat-number { font-size: 42px; font-weight: 700; color: #667eea; margin-bottom: 10px; }
+.stat-number { font-size: 42px; font-weight: 700; color: #4a5fc1; margin-bottom: 10px; }
 .stat-card p { font-size: 16px; color: #666; margin: 0; }
 .testimonials { padding: 100px 40px; background: white; }
 .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
-.testimonial-card { background: #f5f7fa; padding: 30px; border-radius: 12px; border-left: 4px solid #667eea; }
+.testimonial-card { background: #f5f7fa; padding: 30px; border-radius: 12px; border-left: 4px solid #4a5fc1; }
 .rating { font-size: 18px; color: #ffc107; margin-bottom: 15px; }
 .testimonial-text { font-size: 16px; color: #333; line-height: 1.8; margin: 0 0 15px 0; font-style: italic; }
-.testimonial-author { font-size: 14px; color: #667eea; font-weight: 600; margin: 0; }
-.cta-final { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 80px 40px; text-align: center; }
+.testimonial-author { font-size: 14px; color: #4a5fc1; font-weight: 600; margin: 0; }
+.cta-final { background: linear-gradient(135deg, #4a5fc1 0%, #5a3d7f 100%); color: white; padding: 80px 40px; text-align: center; }
 .cta-content h2 { font-size: 42px; margin: 0 0 20px 0; font-weight: 700; }
 .cta-content p { font-size: 20px; margin: 0 0 30px 0; opacity: 0.95; max-width: 600px; margin-left: auto; margin-right: auto; }
-.btn-primary-large { padding: 18px 50px; background: white; color: #667eea; border: none; border-radius: 8px; font-size: 18px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; }
-.btn-primary-large:hover { transform: translateY(-2px); box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3); }
+.btn-primary-large { padding: 18px 50px; background: white; color: #4a5fc1; border: none; border-radius: 8px; font-size: 18px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; }
+.btn-primary-large:hover { transform: translateY(-2px); box-shadow: 0 5px 30px rgba(0, 0, 0, 0.4); }
 @media (max-width: 1024px) { .hero { grid-template-columns: 1fr; gap: 40px; padding: 60px 30px; } .hero h1 { font-size: 36px; } .hero-graphic { font-size: 60px; } }
 @media (max-width: 768px) { .hero { padding: 40px 20px; } .hero h1 { font-size: 28px; } .hero-buttons { flex-direction: column; } .btn-primary, .btn-secondary { width: 100%; } .section-header h2 { font-size: 28px; } .features, .how-it-works, .testimonials, .cta-final { padding: 60px 20px; } .testimonials-grid, .features-grid, .steps-grid { grid-template-columns: 1fr; } .graphic-element { font-size: 50px; } }

@@ -5,7 +5,7 @@
 }
 
 .blog-header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #4a5fc1 0%, #5a3d7f 100%);
   color: white;
   padding: 60px 20px;
   text-align: center;
@@ -71,7 +71,7 @@
 
 .search-input:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: #4a5fc1;
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
@@ -97,7 +97,7 @@
 
 .category-option input[type="radio"] {
   cursor: pointer;
-  accent-color: #667eea;
+  accent-color: #4a5fc1;
 }
 
 .category-option span {
@@ -245,7 +245,7 @@
 .read-more-btn {
   margin-top: 15px;
   padding: 12px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #4a5fc1 0%, #5a3d7f 100%);
   color: white;
   border: none;
   border-radius: 6px;
@@ -283,8 +283,8 @@
 }
 
 .pagination-btn:hover:not(:disabled) {
-  border-color: #667eea;
-  color: #667eea;
+  border-color: #4a5fc1;
+  color: #4a5fc1;
 }
 
 .pagination-btn:disabled {

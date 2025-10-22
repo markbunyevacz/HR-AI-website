@@ -14,6 +14,7 @@ const Register = () => {
     confirmPassword: '',
   });
   const [formError, setFormError] = useState('');
+  const [passwordFocused, setPasswordFocused] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -105,8 +106,23 @@ const Register = () => {
               name="password"
               value={formData.password}
               onChange={handleChange}
+              onFocus={() => setPasswordFocused(true)}
+              onBlur={() => setPasswordFocused(false)}
               disabled={isLoading}
             />
+            {(passwordFocused || formData.password) && (
+              <div className="password-requirements">
+                <p className={formData.password.length >= 6 ? 'requirement-met' : 'requirement-unmet'}>
+                  {formData.password.length >= 6 ? '✓' : '○'} At least 6 characters
+                </p>
+                <p className={/[A-Z]/.test(formData.password) ? 'requirement-met' : 'requirement-unmet'}>
+                  {/[A-Z]/.test(formData.password) ? '✓' : '○'} One uppercase letter
+                </p>
+                <p className={/[0-9]/.test(formData.password) ? 'requirement-met' : 'requirement-unmet'}>
+                  {/[0-9]/.test(formData.password) ? '✓' : '○'} One number
+                </p>
+              </div>
+            )}
           </div>
 
           <div className="form-group">
