@@ -9,7 +9,44 @@ module.exports = {
       `SELECT id FROM users WHERE role IN ('admin', 'instructor') LIMIT 1;`
     );
 
-    const instructorId = users.length > 0 ? users[0].id : null;
+    let instructorId;
+    if (users.length === 0) {
+      console.log('⚠️  No instructor found. Creating a default instructor user...');
+      
+      const bcrypt = require('bcryptjs');
+      const defaultUserId = uuidv4();
+      const hashedPassword = await bcrypt.hash('InstructorPassword123!', 10);
+      
+      try {
+        await queryInterface.sequelize.query(
+          `INSERT INTO users (id, email, password, first_name, last_name, role, created_at, updated_at)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?);`,
+          {
+            replacements: [
+              defaultUserId,
+              'instructor@hrailogy.com',
+              hashedPassword,
+              'HR',
+              'Instructor',
+              'instructor',
+              new Date(),
+              new Date()
+            ]
+          }
+        );
+        instructorId = defaultUserId;
+        console.log('✅ Default instructor user created');
+      } catch (err) {
+        console.log('ℹ️  Instructor user may already exist, continuing...');
+        // If user already exists, try to fetch it
+        const [existingUsers] = await queryInterface.sequelize.query(
+          `SELECT id FROM users LIMIT 1;`
+        );
+        instructorId = existingUsers.length > 0 ? existingUsers[0].id : uuidv4();
+      }
+    } else {
+      instructorId = users[0].id;
+    }
 
     // Define CAHIS courses based on certification documentation
     const courses = [

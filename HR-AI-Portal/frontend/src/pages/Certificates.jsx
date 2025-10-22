@@ -9,9 +9,12 @@ const Certificates = () => {
   const [certificates, setCertificates] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
+  const [courses, setCourses] = useState([]);
+  const [issuingDemo, setIssuingDemo] = useState(false);
 
   useEffect(() => {
     fetchCertificates();
+    fetchCourses();
   }, []);
 
   const fetchCertificates = async () => {
@@ -30,6 +33,44 @@ const Certificates = () => {
       console.error(err);
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const fetchCourses = async () => {
+    try {
+      const response = await axios.get('/api/courses?limit=50', {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (response.data.success) {
+        setCourses(response.data.data || []);
+      }
+    } catch (err) {
+      console.error('Error fetching courses:', err);
+    }
+  };
+
+  const issueDemoCertificate = async (courseId) => {
+    setIssuingDemo(true);
+    try {
+      const response = await axios.post(
+        '/api/certificates/demo/issue',
+        { courseId },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+
+      if (response.data.success) {
+        // Refresh certificates list
+        await fetchCertificates();
+        setError('');
+      } else {
+        setError(response.data.message || 'Failed to issue certificate');
+      }
+    } catch (err) {
+      setError(err.response?.data?.message || 'Error issuing demo certificate');
+      console.error(err);
+    } finally {
+      setIssuingDemo(false);
     }
   };
 
@@ -70,9 +111,20 @@ const Certificates = () => {
             <div className="empty-icon">📋</div>
             <h3>No Certificates Yet</h3>
             <p>Complete courses and pass their quizzes to earn certificates</p>
-            <button className="btn-explore" onClick={() => window.location.href = '/courses'}>
-              Explore Courses
-            </button>
+            <div className="empty-state-actions">
+              <button className="btn-explore" onClick={() => window.location.href = '/courses'}>
+                Explore Courses
+              </button>
+              {courses.length > 0 && (
+                <button 
+                  className="btn-demo" 
+                  onClick={() => issueDemoCertificate(courses[0].id)}
+                  disabled={issuingDemo}
+                >
+                  {issuingDemo ? '⏳ Issuing...' : '🎖️ Get Demo Certificate'}
+                </button>
+              )}
+            </div>
           </div>
         ) : (
           <div className="certificates-grid">

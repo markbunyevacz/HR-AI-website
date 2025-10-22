@@ -207,6 +207,42 @@ const getCourseStatistics = async (courseId) => {
   }
 };
 
+// Issue demo certificate (for testing/demo purposes - bypasses eligibility check)
+const issueDemoCertificate = async (userId, courseId) => {
+  try {
+    // Check if certificate already exists
+    const existing = await Certificate.findOne({
+      where: { userId, courseId },
+    });
+
+    if (existing) {
+      return { success: false, message: 'Certificate already issued for this course', certificate: existing };
+    }
+
+    // Create certificate without eligibility check
+    const certificateNumber = generateCertificateNumber();
+    const verificationCode = generateVerificationCode();
+
+    const certificate = await Certificate.create({
+      userId,
+      courseId,
+      certificateNumber,
+      verificationCode,
+      issuedAt: new Date(),
+      expiresAt: new Date(Date.now() + 3 * 365 * 24 * 60 * 60 * 1000), // 3 years
+    });
+
+    return {
+      success: true,
+      message: 'Demo certificate issued successfully',
+      certificate,
+    };
+  } catch (error) {
+    console.error('Error issuing demo certificate:', error);
+    throw new Error('Failed to issue demo certificate');
+  }
+};
+
 module.exports = {
   generateCertificateNumber,
   generateVerificationCode,
@@ -215,4 +251,5 @@ module.exports = {
   getUserCertificates,
   verifyCertificate,
   getCourseStatistics,
+  issueDemoCertificate,
 };

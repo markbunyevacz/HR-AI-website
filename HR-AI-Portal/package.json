@@ -22,5 +22,8 @@
     "Learning"
   ],
   "author": "HR AI Team",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "sqlite3": "^5.1.7"
+  }
 }

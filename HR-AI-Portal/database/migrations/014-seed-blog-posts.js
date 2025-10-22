@@ -5,16 +5,43 @@ const { v4: uuidv4 } = require('uuid');
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     // Get a user to be the author
-    const [users] = await queryInterface.sequelize.query(
+    let [users] = await queryInterface.sequelize.query(
       `SELECT id FROM users LIMIT 1;`
     );
 
+    let authorId;
     if (users.length === 0) {
-      console.log('⚠️  No users found. Please create users before seeding blog posts.');
-      return;
+      console.log('⚠️  No users found. Creating a default admin user for blog authorship...');
+      
+      // Create a default admin user if none exists
+      const { v4: uuidv4 } = require('uuid');
+      const bcrypt = require('bcryptjs');
+      
+      const defaultUserId = uuidv4();
+      const hashedPassword = await bcrypt.hash('AdminPassword123!', 10);
+      
+      await queryInterface.sequelize.query(
+        `INSERT INTO users (id, email, password, first_name, last_name, role, created_at, updated_at)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?);`,
+        {
+          replacements: [
+            defaultUserId,
+            'admin@hrailogy.com',
+            hashedPassword,
+            'HR',
+            'Admin',
+            'admin',
+            new Date(),
+            new Date()
+          ]
+        }
+      );
+      
+      authorId = defaultUserId;
+      console.log('✅ Default admin user created');
+    } else {
+      authorId = users[0].id;
     }
-
-    const authorId = users[0].id;
 
     const blogPosts = [
       {

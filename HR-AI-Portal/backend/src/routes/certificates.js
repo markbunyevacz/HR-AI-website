@@ -5,6 +5,7 @@ const {
   getUserCertificates,
   verifyCertificate,
   getCourseStatistics,
+  issueDemoCertificate,
 } = require('../services/certificateService');
 const { authMiddleware, roleMiddleware } = require('../middleware/auth');
 
@@ -104,6 +105,42 @@ router.get('/stats/course/:courseId', authMiddleware, roleMiddleware(['instructo
     res.status(500).json({
       success: false,
       message: 'Error fetching course statistics',
+      error: error.message,
+    });
+  }
+});
+
+// Admin endpoint: Issue demo certificate (for testing/demo purposes)
+router.post('/demo/issue', authMiddleware, roleMiddleware(['admin', 'instructor']), async (req, res) => {
+  try {
+    const { courseId, userId } = req.body;
+    const targetUserId = userId || req.user.id;
+
+    if (!courseId) {
+      return res.status(400).json({
+        success: false,
+        message: 'Course ID is required',
+      });
+    }
+
+    const result = await issueDemoCertificate(targetUserId, courseId);
+
+    if (result.success) {
+      res.status(201).json({
+        success: true,
+        message: result.message,
+        data: result.certificate,
+      });
+    } else {
+      res.status(400).json({
+        success: false,
+        message: result.message,
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'Error issuing demo certificate',
       error: error.message,
     });
   }
