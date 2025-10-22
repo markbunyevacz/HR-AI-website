@@ -8,15 +8,18 @@ const config = require('../config/config.js');
 const env = process.env.NODE_ENV || 'development';
 const dbConfig = config[env];
 
-const sequelize = new Sequelize(
-  dbConfig.database,
-  dbConfig.username,
-  dbConfig.password,
-  {
-    host: dbConfig.host,
-    dialect: dbConfig.dialect,
-  }
-);
+// Handle DATABASE_URL for production (Render, Railway, Heroku, etc.)
+const sequelize = dbConfig.use_env_variable
+  ? new Sequelize(process.env[dbConfig.use_env_variable], dbConfig)
+  : new Sequelize(
+      dbConfig.database,
+      dbConfig.username,
+      dbConfig.password,
+      {
+        host: dbConfig.host,
+        dialect: dbConfig.dialect,
+      }
+    );
 
 const db = {};
 
