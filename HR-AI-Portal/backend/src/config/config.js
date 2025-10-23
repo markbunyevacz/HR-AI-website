@@ -6,7 +6,20 @@ module.exports = {
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
     host: process.env.DB_HOST,
-    dialect: 'postgres'
+    dialect: 'postgres',
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false
+      }
+    },
+    pool: {
+      max: 5,
+      min: 1,
+      acquire: 30000,
+      idle: 10000
+    },
+    logging: false    // Disable SQL logging in production
   },
   test: {
     username: process.env.DB_USERNAME_TEST,
