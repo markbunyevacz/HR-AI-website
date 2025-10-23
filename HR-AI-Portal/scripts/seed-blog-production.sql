@@ -186,3 +186,4 @@ SELECT COUNT(*) as "Total Blog Posts Seeded" FROM blog_posts WHERE slug IN (
     'creating-ai-human-impact-assessment-framework',
     'future-of-work-humans-ai-collaboration'
 );
+
